@@ -5,6 +5,7 @@ coverage/
 .DS_Store
 .env
 *.tsbuildinfo
+*.tgz
 
 
 # START Ruler Generated Files
@@ -24,4 +25,5 @@ coverage/
 /CLAUDE.md.bak
 # END Ruler Generated Files
 .DS_Store
+
 

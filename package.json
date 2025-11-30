@@ -1,6 +1,6 @@
 {
   "name": "@nierlu/nanobanana-mcp",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "MCP server for generating and editing images using Google nanobanana API",
   "main": "dist/server.js",
   "type": "module",
@@ -39,7 +39,7 @@
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/a6401040/nanobanana-mcp.git"
+    "url": "git+https://github.com/a6401040/nanobanana-mcp.git"
   },
   "bugs": {
     "url": "https://github.com/a6401040/nanobanana-mcp.git/issues"
