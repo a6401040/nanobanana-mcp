@@ -20,7 +20,7 @@ export class ImageGenerator {
         "Google API key is required. Set GOOGLE_API_KEY environment variable or provide it in constructor."
       );
     }
-    this.ai = new GoogleGenAI({ apiKey: key });
+    this.ai = new GoogleGenAI({ apiKey: key, apiVersion: "v1" });
   }
 
   /**
