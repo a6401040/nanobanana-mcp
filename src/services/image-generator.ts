@@ -13,14 +13,17 @@ export type AspectRatio = "1:1" | "2:3" | "3:2" | "3:4" | "4:3" | "4:5" | "5:4" 
 export class ImageGenerator {
   private ai: GoogleGenAI;
 
-  constructor(apiKey?: string) {
+  constructor(apiKey?: string, baseURL?: string) {
     const key = apiKey || process.env.GOOGLE_API_KEY;
     if (!key) {
       throw new Error(
         "Google API key is required. Set GOOGLE_API_KEY environment variable or provide it in constructor."
       );
     }
-    this.ai = new GoogleGenAI({ apiKey: key, apiVersion: "v1" });
+    if (baseURL) {
+      process.env.GOOGLE_GEMINI_BASE_URL = baseURL;
+    }
+    this.ai = new GoogleGenAI({ apiKey: key});
   }
 
   /**

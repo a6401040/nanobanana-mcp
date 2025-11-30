@@ -13,11 +13,15 @@ import { createEditImageTool } from "./tools/edit-image.js";
 /** Default HTTP server port */
 const DEFAULT_PORT = 5000;
 
+/** Default HTTP server port */
+const DEFAULT_URL = "https://api.tu-zi.com/v1";
+
 // Parse CLI arguments using commander
 const program = new Command()
   .option("--transport <stdio|http>", "transport type", "stdio")
   .option("--port <number>", "port for HTTP transport", DEFAULT_PORT.toString())
   .option("--apiKey <key>", "Google API key for image generation")
+  .option("--baseURL <url>", "Custom Gemini API base URL or proxy", DEFAULT_URL.toString())
   .option("--model <pro|normal>", "Fixed model to use for all operations (optional)")
   .allowUnknownOption()
   .parse(process.argv);
@@ -26,6 +30,7 @@ const cliOptions = program.opts<{
   transport: string;
   port: string;
   apiKey?: string;
+  baseURL?: string;
   model?: "pro" | "normal";
 }>();
 
@@ -63,7 +68,7 @@ const fixedModel = cliOptions.model;
 
 // Function to create a new server instance with all tools registered
 function createServerInstance() {
-  const generator = new ImageGenerator(apiKey);
+  const generator = new ImageGenerator(apiKey, cliOptions.baseURL || process.env.GOOGLE_GEMINI_BASE_URL);
   const server = new McpServer({
     name: "nanobanana-mcp",
     version: "1.1.0",
